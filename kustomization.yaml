@@ -6,6 +6,38 @@ namePrefix: meet-
 
 buildMetadata: [originAnnotations]
 
-
-# resources:
-#   - manifests/deployment.yaml
+resources:
+  - manifests/configmap-livekit-egress.yaml
+  - manifests/configmap-livekit-server.yaml
+  - manifests/configmap-redis.yaml
+  - manifests/deployment-backend.yaml
+  - manifests/deployment-celery.yaml
+  - manifests/deployment-frontend.yaml
+  - manifests/deployment-livekit-egress.yaml
+  - manifests/deployment-livekit-server.yaml
+  - manifests/deployment-mailcatcher.yaml
+  - manifests/deployment-minio.yaml
+  - manifests/deployment-redis.yaml
+  - manifests/deployment-summary.yaml
+  - manifests/ingress-admin.yaml
+  - manifests/ingress-backend.yaml
+  - manifests/ingress-livekit.yaml
+  - manifests/ingress-posthog-assets.yaml
+  - manifests/ingress-posthog.yaml
+  - manifests/postgresql-cluster.yaml
+  - manifests/pvc-minio.yaml
+  - manifests/pvc.yaml
+  - manifests/secret-backend.yaml
+  - manifests/secret-minio.yaml
+  - manifests/secret-postgres-super.yaml
+  - manifests/secret-postgres.yaml
+  - manifests/secret-summary.yaml
+  - manifests/service-backend.yaml
+  - manifests/service-mailcatcher.yaml
+  - manifests/service-frontend.yaml
+  - manifests/service-livekit.yaml
+  - manifests/service-minio.yaml
+  - manifests/service-posthog-assets.yaml
+  - manifests/service-posthog.yaml
+  - manifests/service-redis.yaml
+  - manifests/service-summary.yaml

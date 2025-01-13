@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: redis
+data:
+  redis.conf: |
+    bind * -::* 
+    protected-mode no
+    port 6379
+    loglevel verbose

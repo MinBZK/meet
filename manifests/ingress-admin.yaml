@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ing-admin
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    # nginx.ingress.kubernetes.io/auth-signin: https://id.la-suite.apps.digilab.network/realms/lasuite/protocol/openid-connect/auth
+    # nginx.ingress.kubernetes.io/auth-url: https://id.la-suite.apps.digilab.network/realms/lasuite/protocol/openid-connect/userinfo
+spec:
+  rules:
+  - host: meet.la-suite.apps.digilab.network
+    http:
+      paths:
+      - path: /admin
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-backend
+            port:
+              number: 8000
+      - path: /static
+        pathType: Prefix
+        backend:
+          service:
+            name: svc-backend
+            port:
+              number: 8000
+  tls:
+    - hosts:
+        - meet.la-suite.apps.digilab.network
+      secretName: meet-tls

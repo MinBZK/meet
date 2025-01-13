@@ -1,0 +1,31 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: cluster-db
+spec:
+  instances: 2
+  imageName: ghcr.io/cloudnative-pg/postgresql:16.3
+
+  bootstrap:
+    initdb:
+      database: meet
+      owner: meet
+      secret:
+        name: meet-sec-postgres
+
+  storage:
+    storageClass: managed-csi-premium
+    size: 2Gi
+
+  enableSuperuserAccess: true
+  superuserSecret:
+    name: meet-sec-postgres-super
+
+  postgresql:
+    parameters:
+      shared_buffers: "128MB"
+
+  resources:
+    requests:
+      memory: "1Gi"
+      cpu: "300m"

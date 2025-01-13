@@ -1,0 +1,4 @@
+.venv/
+split.py
+k8s_manifest.yaml
+manifests2/
