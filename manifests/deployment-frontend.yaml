@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: meet-frontend
+  labels:
+    app: meet-frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meet-frontend
+  template:
+    metadata:
+      annotations:
+      labels:
+        app: meet-frontend
+    spec:
+      shareProcessNamespace: false
+      containers:
+      - name: meet
+        image: lasuite/meet-frontend:v0.1.11
+        imagePullPolicy: Always
+        env:
+        ports:
+        - name: http
+          containerPort: 8080
+          protocol: TCP
+        volumeMounts:
+      volumes:
