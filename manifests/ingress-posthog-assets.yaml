@@ -9,17 +9,17 @@ metadata:
 spec:
   ingressClassName: nginx
   tls:
-  - secretName: meet-posthog-tls
-    hosts:
-    - product.meet.la-suite.apps.digilab.network
+    - secretName: meet-posthog-tls
+      hosts:
+        - product.meet.la-suite.apps.digilab.network
   rules:
-  - host: product.meet.la-suite.apps.digilab.network
-    http:
-      paths:
-      - path: /static
-        pathType: Prefix
-        backend:
-          service:
-            name: svc-posthog-assets
-            port:
-              number: 443
+    - host: product.meet.la-suite.apps.digilab.network
+      http:
+        paths:
+          - path: /static
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-posthog-assets
+                port:
+                  number: 443

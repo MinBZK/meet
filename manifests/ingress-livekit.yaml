@@ -4,21 +4,21 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 apiVersion: networking.k8s.io/v1
 spec:
   rules:
-  - host: livekit.meet.la-suite.apps.digilab.network
-    http:
-      paths:
-      - pathType: Prefix
-        path: /
-        backend:
-          service:
-            name: svc-livekit
-            port:
-              number: 80
+    - host: livekit.meet.la-suite.apps.digilab.network
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: svc-livekit
+                port:
+                  number: 80
   tls:
-  - hosts:
-    - livekit.meet.la-suite.apps.digilab.network
-    secretName: livekit-cert
+    - hosts:
+        - livekit.meet.la-suite.apps.digilab.network
+      secretName: livekit-cert
