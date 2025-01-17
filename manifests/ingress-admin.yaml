@@ -8,23 +8,23 @@ metadata:
     # nginx.ingress.kubernetes.io/auth-url: https://id.la-suite.apps.digilab.network/realms/lasuite/protocol/openid-connect/userinfo
 spec:
   rules:
-  - host: meet.la-suite.apps.digilab.network
-    http:
-      paths:
-      - path: /admin
-        pathType: Prefix
-        backend:
-          service:
-            name: svc-backend
-            port:
-              number: 8000
-      - path: /static
-        pathType: Prefix
-        backend:
-          service:
-            name: svc-backend
-            port:
-              number: 8000
+    - host: meet.la-suite.apps.digilab.network
+      http:
+        paths:
+          - path: /admin
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-backend
+                port:
+                  number: 8000
+          - path: /static
+            pathType: Prefix
+            backend:
+              service:
+                name: svc-backend
+                port:
+                  number: 8000
   tls:
     - hosts:
         - meet.la-suite.apps.digilab.network

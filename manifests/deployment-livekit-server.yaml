@@ -21,71 +21,76 @@ spec:
       hostNetwork: true
       terminationGracePeriodSeconds: 18000
       initContainers:
-      - name: init-config
-        image: dibi/envsubst:1
-        command: ['sh', '-c', 'envsubst < /etc/livekit-template/config.yaml > /etc/livekit/config.yaml']
-        entrypoint: [""]
-        env:
-        - name: LIVEKIT_API_KEY
-          valueFrom:
-            secretKeyRef:
-              key: LIVEKIT_API_KEY
-              name: sec-backend
-        - name: LIVEKIT_API_SECRET
-          valueFrom:
-            secretKeyRef:
-              key: LIVEKIT_API_SECRET
-              name: sec-backend
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/livekit-template
-        - name: workdir
-          mountPath: /etc/livekit
+        - name: init-config
+          image: dibi/envsubst:1
+          command:
+            [
+              "sh",
+              "-c",
+              "envsubst < /etc/livekit-template/config.yaml > /etc/livekit/config.yaml",
+            ]
+          entrypoint: [""]
+          env:
+            - name: LIVEKIT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_KEY
+                  name: sec-backend
+            - name: LIVEKIT_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_SECRET
+                  name: sec-backend
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/livekit-template
+            - name: workdir
+              mountPath: /etc/livekit
       containers:
-      - name: livekit-server
-        securityContext: {}
-        image: livekit/livekit-server:v1.8.0
-        imagePullPolicy: IfNotPresent
-        args: [--disable-strict-config, --config, /etc/livekit/config.yaml]
-        env:
-        - name: LIVEKIT_API_KEY
-          valueFrom:
-            secretKeyRef:
-              key: LIVEKIT_API_KEY
-              name: sec-backend
-        - name: LIVEKIT_API_SECRET
-          valueFrom:
-            secretKeyRef:
-              key: LIVEKIT_API_SECRET
-              name: sec-backend
-        ports:
-        - name: http
-          containerPort: 7880
-          protocol: TCP
-        - name: rtc-tcp
-          containerPort: 7881
-          hostPort: 7881
-          protocol: TCP
-        - name: turn-udp
-          containerPort: 443
-          hostPort: 443
-          protocol: UDP
-        livenessProbe:
-          httpGet:
-            path: /
-            port: http
-        readinessProbe:
-          httpGet:
-            path: /
-            port: http
-        volumeMounts:
-        - name: config-volume
-          mountPath: /etc/livekit-template
-        - name: workdir
-          mountPath: /etc/livekit
+        - name: livekit-server
+          securityContext: {}
+          image: livekit/livekit-server:v1.8.0
+          imagePullPolicy: IfNotPresent
+          args: [--disable-strict-config, --config, /etc/livekit/config.yaml]
+          env:
+            - name: LIVEKIT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_KEY
+                  name: sec-backend
+            - name: LIVEKIT_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_SECRET
+                  name: sec-backend
+          ports:
+            - name: http
+              containerPort: 7880
+              protocol: TCP
+            - name: rtc-tcp
+              containerPort: 7881
+              hostPort: 7881
+              protocol: TCP
+            - name: turn-udp
+              containerPort: 443
+              hostPort: 443
+              protocol: UDP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/livekit-template
+            - name: workdir
+              mountPath: /etc/livekit
       volumes:
-      - name: workdir
-        emptyDir: {}
-      - name: config-volume
-        configMap:
-          name: livekit-livekit-server
+        - name: workdir
+          emptyDir: {}
+        - name: config-volume
+          configMap:
+            name: livekit-livekit-server
