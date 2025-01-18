@@ -9,15 +9,14 @@ data:
     log_level: debug
     port: 7880
     redis:
-      address: meet-svc-redis:6379
+      address: meet-svc-redis.tn-openbsw-meet.svc.cluster.local:6379
     rtc:
       port_range_end: 60000
       port_range_start: 50000
       tcp_port: 7881
-      use_external_ip: true
+      use_external_ip: false
     turn:
-      domain: livekit.meet.la-suite.apps.digilab.network
+      domain: turn.la-suite.apps.digilab.network
       enabled: true
+      loadBalancerAnnotations: {}
       udp_port: 443
-      tls_port: 3478
-      secretName: meet-tls
