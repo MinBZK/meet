@@ -8,11 +8,6 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-    - name: rtc-tcp
-      port: 7881
-      protocol: TCP
-      targetPort: rtc-tcp
-
   selector:
     app: livekit-server
   type: LoadBalancer
