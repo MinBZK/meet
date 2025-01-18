@@ -17,6 +17,8 @@ spec:
       labels:
         app: livekit-server
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: aks-az1pool1-29662286-vmss000001
       dnsPolicy: ClusterFirstWithHostNet
       hostNetwork: true
       terminationGracePeriodSeconds: 18000
