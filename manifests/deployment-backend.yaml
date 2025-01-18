@@ -24,7 +24,7 @@ spec:
               "meet.wsgi:application",
               "--reload",
             ]
-          image: lasuite/meet-backend:v0.1.11
+          image: lasuite/meet-backend:v0.1.12
           imagePullPolicy: Always
           env:
             - name: CORS_ALLOW_ALL_ORIGINS

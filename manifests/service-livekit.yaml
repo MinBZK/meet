@@ -8,11 +8,14 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
-    - name: rtc-tcp
-      port: 7881
+    - port: 443
+      targetPort: turn-udp
+      protocol: UDP
+      name: turn-udp
+    - port: 443
+      targetPort: turn-tcp
       protocol: TCP
-      targetPort: rtc-tcp
-
+      name: turn-tcp
   selector:
     app: livekit-server
   type: LoadBalancer
