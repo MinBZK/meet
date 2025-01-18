@@ -1,0 +1,187 @@
+---
+# Source: livekit-server/templates/configmap.yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: livekit-release-livekit-server
+data:
+  config.yaml: |
+    keys:
+      berry: berrysecret
+    log_level: debug
+    port: 7880
+    redis:
+      address: redis:6379
+    room:
+      departure_timeout: 10
+      empty_timeout: 60
+      max_participants: 10
+    rtc:
+      port_range_end: 60000
+      port_range_start: 50000
+      tcp_port: 7881
+      use_external_ip: false
+    turn:
+      domain: turn.meet.la-suite.apps.digilab.network
+      enabled: true
+      external_tls: true
+      loadBalancerAnnotations: {}
+      tls_port: 443
+      udp_port: 443
+---
+# Source: livekit-server/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: livekit-release-livekit-server
+  labels:
+    helm.sh/chart: livekit-server-1.8.3
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+    app.kubernetes.io/version: "v1.8.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+spec:
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+---
+# Source: livekit-server/templates/turnloadbalancer.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: 'livekit-release-livekit-server-turn'
+  labels:
+    helm.sh/chart: livekit-server-1.8.3
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+    app.kubernetes.io/version: "v1.8.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 443
+      targetPort: 443
+      protocol: TCP
+  selector:
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+---
+# Source: livekit-server/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: livekit-release-livekit-server
+  labels:
+    helm.sh/chart: livekit-server-1.8.3
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+    app.kubernetes.io/version: "v1.8.3"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: livekit-server
+      app.kubernetes.io/instance: livekit-release
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: disabled
+        sidecar.istio.io/inject: "false"
+        checksum/config: 13ffdd82b81cbd52d4c8c1fadb95f5cde4a9fd46cde427e1882c0797ff3bd22d
+      labels:
+        app.kubernetes.io/name: livekit-server
+        app.kubernetes.io/instance: livekit-release
+    spec:
+      serviceAccountName: default
+      securityContext:
+        {}
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      terminationGracePeriodSeconds: 18000
+      containers:
+        - name: livekit-server
+          securityContext:
+            {}
+          image: "livekit/livekit-server:v1.8.3"
+          imagePullPolicy: IfNotPresent
+          args: ["--disable-strict-config"]
+          env:
+            - name: LIVEKIT_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: livekit-release-livekit-server
+                  key: config.yaml
+          ports:
+            - name: http
+              containerPort: 7880
+              protocol: TCP
+            - name: rtc-tcp
+              containerPort: 7881
+              hostPort: 7881
+              protocol: TCP
+            - name: turn-tls
+              containerPort: 443
+              hostPort: 443
+              protocol: TCP
+            - name: turn-udp
+              containerPort: 443
+              hostPort: 443
+              protocol: UDP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            {}
+---
+# Source: livekit-server/templates/ingress.yaml
+kind: Ingress
+metadata:
+  name: livekit-release-livekit-server
+  labels:
+    helm.sh/chart: livekit-server-1.8.3
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+    app.kubernetes.io/version: "v1.8.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+  # custom annotations
+  # AWS ALB
+  # GKE with managed certs
+  # DO with cert manager
+apiVersion: networking.k8s.io/v1
+spec:
+  rules:
+  # In order to work with cert manager on DO, we cannot set us as a default backend
+---
+# Source: livekit-server/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "livekit-release-livekit-server-test-connection"
+  labels:
+    helm.sh/chart: livekit-server-1.8.3
+    app.kubernetes.io/name: livekit-server
+    app.kubernetes.io/instance: livekit-release
+    app.kubernetes.io/version: "v1.8.3"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['livekit-release-livekit-server:80']
+  restartPolicy: Never

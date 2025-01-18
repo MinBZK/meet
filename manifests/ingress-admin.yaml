@@ -4,8 +4,8 @@ metadata:
   name: ing-admin
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    # nginx.ingress.kubernetes.io/auth-signin: https://id.la-suite.apps.digilab.network/realms/lasuite/protocol/openid-connect/auth
-    # nginx.ingress.kubernetes.io/auth-url: https://id.la-suite.apps.digilab.network/realms/lasuite/protocol/openid-connect/userinfo
+    nginx.ingress.kubernetes.io/auth-signin: https://oauth2-proxy.la-suite.apps.digilab.network/oauth2/start?rd=$escaped_request_uri
+    nginx.ingress.kubernetes.io/auth-url: https://oauth2-proxy.la-suite.apps.digilab.network/oauth2/auth
 spec:
   rules:
     - host: meet.la-suite.apps.digilab.network

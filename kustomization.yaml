@@ -22,8 +22,6 @@ resources:
   - manifests/ingress-admin.yaml
   - manifests/ingress-backend.yaml
   - manifests/ingress-livekit.yaml
-  - manifests/ingress-posthog-assets.yaml
-  - manifests/ingress-posthog.yaml
   - manifests/postgresql-cluster.yaml
   - manifests/pvc-minio.yaml
   - manifests/pvc.yaml
@@ -37,7 +35,5 @@ resources:
   - manifests/service-frontend.yaml
   - manifests/service-livekit.yaml
   - manifests/service-minio.yaml
-  - manifests/service-posthog-assets.yaml
-  - manifests/service-posthog.yaml
   - manifests/service-redis.yaml
   - manifests/service-summary.yaml
