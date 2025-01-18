@@ -1,6 +1,6 @@
 kind: Ingress
 metadata:
-  name: ing-livekit
+  name: ing-livekit-turn
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     # nginx.ingress.kubernetes.io/rewrite-target: /
@@ -8,7 +8,7 @@ metadata:
 apiVersion: networking.k8s.io/v1
 spec:
   rules:
-    - host: livekit.meet.la-suite.apps.digilab.network
+    - host: turn.meet.la-suite.apps.digilab.network
       http:
         paths:
           - pathType: Prefix
@@ -17,8 +17,8 @@ spec:
               service:
                 name: svc-livekit
                 port:
-                  number: 80
+                  number: 443
   tls:
     - hosts:
-        - livekit.meet.la-suite.apps.digilab.network
-      secretName: livekit-cert
+        - turn.meet.la-suite.apps.digilab.network
+      secretName: livekit-turn-cert
