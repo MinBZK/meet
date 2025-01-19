@@ -12,6 +12,8 @@ spec:
       labels:
         app: redis
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: aks-az1pool1-29662286-vmss000001
       automountServiceAccountToken: false
       containers:
         - name: redis
