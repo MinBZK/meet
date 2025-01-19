@@ -29,8 +29,6 @@ spec:
           env:
             - name: CORS_ALLOW_ALL_ORIGINS
               value: "true"
-            - name: DJANGO_DEBUG
-              value: "True"
             - name: ALLOW_UNREGISTERED_ROOMS
               value: "false"
             - name: AWS_S3_ACCESS_KEY_ID
@@ -49,6 +47,8 @@ spec:
                   name: sec-minio
             - name: AWS_STORAGE_BUCKET_NAME
               value: meet-media-storage
+            - name: CELERY_BROKER_URL
+              value: redis://meet-svc-redis:6379/1
             - name: DB_HOST
               value: meet-cluster-db-rw
             - name: DB_NAME
@@ -80,8 +80,6 @@ spec:
                 secretKeyRef:
                   key: DJANGO_SECRET_KEY
                   name: sec-backend
-            - name: DJANGO_SETTINGS_MODULE
-              value: meet.settings
             - name: DJANGO_SILENCED_SYSTEM_CHECKS
               value: security.W004, security.W008
             - name: DJANGO_SUPERUSER_EMAIL
@@ -94,10 +92,6 @@ spec:
                 secretKeyRef:
                   key: DJANGO_SUPERUSER_PASSWORD
                   name: sec-backend
-            - name: FRONTEND_SILENCE_LIVEKIT_DEBUG
-              value: "false"
-            - name: FRONTEND_SUPPORT
-              value: "{'id': '58ea6697-8eba-4492-bc59-ad6562585041'}"
             - name: LIVEKIT_API_KEY
               valueFrom:
                 secretKeyRef:
@@ -144,20 +138,10 @@ spec:
               value: openid email profile
             - name: OIDC_RP_SIGN_ALGO
               value: RS256
-            - name: POSTGRES_DB
-              value: meet
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  key: password
-                  name: sec-postgres
-            - name: POSTGRES_USER
-              valueFrom:
-                secretKeyRef:
-                  key: username
-                  name: sec-postgres
             - name: RECORDING_ENABLE
               value: "true"
+            - name: RECORDING_VERIFY_SSL
+              value: "false"
             - name: RECORDING_STORAGE_EVENT_ENABLE
               value: "true"
             - name: RECORDING_STORAGE_EVENT_TOKEN
@@ -169,8 +153,8 @@ spec:
               value: redis://meet-svc-redis:6379
             - name: "DJANGO_CONFIGURATION"
               value: "Production"
-            - name: STORAGES_STATICFILES_BACKEND
-              value: django.contrib.staticfiles.storage.StaticFilesStorage
+            - name: "RESOURCE_DEFAULT_IS_PUBLIC"
+              value: "true"
             - name: SUMMARY_SERVICE_API_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -178,6 +162,12 @@ spec:
                   name: summary
             - name: SUMMARY_SERVICE_ENDPOINT
               value: http://meet-svc-meet-summary:8000/api/v1/tasks/
+            - name: DJANGO_SETTINGS_MODULE
+              value: meet.settings
+          resources:
+            requests:
+              cpu: 150m
+              memory: 512Mi
           ports:
             - name: http
               containerPort: 8000
