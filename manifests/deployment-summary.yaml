@@ -15,6 +15,8 @@ spec:
         app: summary
     spec:
       shareProcessNamespace: false
+      nodeSelector:
+        kubernetes.io/hostname: aks-az1pool1-29662286-vmss000001
       containers:
         - name: meet
           image: lasuite/meet-summary:v0.1.12
@@ -33,7 +35,7 @@ spec:
                   key: minio_root_user
                   name: sec-minio
             - name: AWS_S3_ENDPOINT_URL
-              value: svc-minio
+              value: meet-svc-minio:9000
             - name: AWS_S3_REGION_NAME
               value: local
             - name: AWS_S3_SECRET_ACCESS_KEY
@@ -44,9 +46,9 @@ spec:
             - name: AWS_STORAGE_BUCKET_NAME
               value: meet-media-storage
             - name: CELERY_BROKER_URL
-              value: meet-svc-redis
+              value: redis://meet-svc-redis/1
             - name: CELERY_RESULT_BACKEND
-              value: meet-svc-redis
+              value: redis://meet-svc-redis/1
             - name: OPENAI_API_KEY
               valueFrom:
                 secretKeyRef:

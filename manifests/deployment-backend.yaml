@@ -39,7 +39,7 @@ spec:
                   key: minio_root_user
                   name: sec-minio
             - name: AWS_S3_ENDPOINT_URL
-              value: meet-svc-minio
+              value: http://meet-svc-minio:9000
             - name: AWS_S3_REGION_NAME
               value: local
             - name: AWS_S3_SECRET_ACCESS_KEY
@@ -66,11 +66,11 @@ spec:
                   key: username
                   name: sec-postgres
             - name: DJANGO_ALLOWED_HOSTS
-              value: "*"
+              value: "meet.la-suite.apps.digilab.network"
             - name: DJANGO_CSRF_TRUSTED_ORIGINS
               value: https://meet.la-suite.apps.digilab.network/
             - name: DJANGO_EMAIL_HOST
-              value: svc-mailcatcher
+              value: meet-svc-mailcatcher
             - name: DJANGO_EMAIL_PORT
               value: "1025"
             - name: DJANGO_EMAIL_USE_SSL
@@ -109,7 +109,7 @@ spec:
                   key: LIVEKIT_API_SECRET
                   name: sec-backend
             - name: LIVEKIT_API_URL
-              value: https://livekit.meet.la-suite.apps.digilab.network
+              value: https://meet-6b0kiy8h.livekit.cloud
             - name: LOGIN_REDIRECT_URL
               value: https://meet.la-suite.apps.digilab.network
             - name: LOGIN_REDIRECT_URL_FAILURE
@@ -168,7 +168,7 @@ spec:
             - name: REDIS_URL
               value: redis://meet-svc-redis:6379
             - name: "DJANGO_CONFIGURATION"
-              value: "Demo"
+              value: "Production"
             - name: STORAGES_STATICFILES_BACKEND
               value: django.contrib.staticfiles.storage.StaticFilesStorage
             - name: SUMMARY_SERVICE_API_TOKEN
@@ -177,7 +177,7 @@ spec:
                   key: APP_API_TOKEN
                   name: summary
             - name: SUMMARY_SERVICE_ENDPOINT
-              value: http://svc-meet-summary:80/api/v1/tasks/
+              value: http://meet-svc-meet-summary:8000/api/v1/tasks/
           ports:
             - name: http
               containerPort: 8000
