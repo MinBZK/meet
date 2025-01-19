@@ -178,6 +178,10 @@ spec:
                   name: summary
             - name: SUMMARY_SERVICE_ENDPOINT
               value: http://meet-svc-meet-summary:8000/api/v1/tasks/
+          resources:
+            requests:
+              cpu: 150m
+              memory: 512Mi
           ports:
             - name: http
               containerPort: 8000
