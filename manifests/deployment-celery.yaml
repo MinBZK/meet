@@ -16,10 +16,12 @@ spec:
         app.kubernetes.io/instance: meet
         app.kubernetes.io/component: celery
     spec:
+      nodeSelector:
+        kubernetes.io/hostname: aks-az1pool1-29662286-vmss000001
       shareProcessNamespace: false
       containers:
         - name: meet
-          image: lasuite/meet-summary:v0.1.10
+          image: lasuite/meet-summary:v0.1.12
           imagePullPolicy: Always
           command:
             - celery
