@@ -109,7 +109,7 @@ spec:
                   key: LIVEKIT_API_SECRET
                   name: sec-backend
             - name: LIVEKIT_API_URL
-              value: https://livekit.meet.la-suite.apps.digilab.network
+              value: https://meet-6b0kiy8h.livekit.cloud
             - name: LOGIN_REDIRECT_URL
               value: https://meet.la-suite.apps.digilab.network
             - name: LOGIN_REDIRECT_URL_FAILURE
@@ -177,7 +177,7 @@ spec:
                   key: APP_API_TOKEN
                   name: summary
             - name: SUMMARY_SERVICE_ENDPOINT
-              value: http://svc-meet-summary:80/api/v1/tasks/
+              value: http://meet-svc-meet-summary:8000/api/v1/tasks/
           ports:
             - name: http
               containerPort: 8000
