@@ -7,6 +7,8 @@ data:
         keys:
           ${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}
         log_level: debug
+        logging:
+          level: debug
         port: 7880
         redis:
           address: meet-svc-redis:6379
