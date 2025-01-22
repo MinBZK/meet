@@ -5,7 +5,7 @@ metadata:
 data:
     config.yaml: |
         keys:
-          ${LIVEKIT_API_KEY}: "${LIVEKIT_API_SECRET}"
+          ${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}
         log_level: debug
         port: 7880
         redis:
