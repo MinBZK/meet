@@ -16,8 +16,6 @@ spec:
         app.kubernetes.io/instance: meet
         app.kubernetes.io/component: celery
     spec:
-      nodeSelector:
-        kubernetes.io/hostname: aks-az1pool1-29662286-vmss000001
       shareProcessNamespace: false
       containers:
         - name: meet
