@@ -31,7 +31,6 @@ spec:
               "-c",
               "envsubst < /etc/livekit-template/config.yaml > /etc/livekit/config.yaml",
             ]
-          entrypoint: [""]
           env:
             - name: LIVEKIT_API_KEY
               valueFrom:
@@ -65,6 +64,10 @@ spec:
                 secretKeyRef:
                   key: LIVEKIT_API_SECRET
                   name: sec-backend
+            - name: LIVEKIT_TURN_CERT
+              value: /etc/lkcert/tls.crt
+            - name: LIVEKIT_TURN_KEY
+              value: /etc/lkcert/tls.key
           ports:
             - name: http
               containerPort: 7880
@@ -73,14 +76,14 @@ spec:
               containerPort: 7881
               hostPort: 7881
               protocol: TCP
-            - name: turn-udp
-              containerPort: 443
-              hostPort: 443
-              protocol: UDP
-            - name: turn-tcp
-              containerPort: 443
-              hostPort: 443
+            - name: turn-tls
+              containerPort: 3478
+              hostPort: 3478
               protocol: TCP
+            - name: turn-udp
+              containerPort: 3478
+              hostPort: 3478
+              protocol: UDP
           livenessProbe:
             httpGet:
               path: /
@@ -94,9 +97,15 @@ spec:
               mountPath: /etc/livekit-template
             - name: workdir
               mountPath: /etc/livekit
+            - name: lkturncert
+              mountPath: /etc/lkcert
+              readOnly: true
       volumes:
         - name: workdir
           emptyDir: {}
         - name: config-volume
           configMap:
             name: livekit-livekit-server
+        - name: lkturncert
+          secret:
+            secretName: livekit-turn-cert

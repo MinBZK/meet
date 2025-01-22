@@ -14,11 +14,12 @@ data:
       port_range_end: 60000
       port_range_start: 50000
       tcp_port: 7881
-      udp_port: 7882
       use_external_ip: true
     turn:
       domain: turn.meet.la-suite.apps.digilab.network
       enabled: true
       loadBalancerAnnotations: {}
-      udp_port: 443
-      tcp_port: 443
+      secretName: livekit-turn-cert
+      serviceType: LoadBalancer
+      tls_port: 3478
+      udp_port: 3478

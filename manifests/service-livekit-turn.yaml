@@ -5,9 +5,9 @@ metadata:
 spec:
   ports:
     - port: 443
-      targetPort: turn-tcp
+      targetPort: turn-tls
       protocol: TCP
-      name: turn-tcp
+      name: turn-tls
   selector:
     app: livekit-server
   type: LoadBalancer
