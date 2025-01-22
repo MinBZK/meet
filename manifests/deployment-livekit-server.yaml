@@ -18,6 +18,31 @@ spec:
         app: livekit-server
     spec:
       terminationGracePeriodSeconds: 18000
+      initContainers:
+        - name: init-config
+          image: dibi/envsubst:1
+          command:
+            [
+              "sh",
+              "-c",
+              "envsubst < /etc/livekit-template/config.yaml > /etc/livekit/config.yaml",
+            ]
+          env:
+            - name: LIVEKIT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_KEY
+                  name: sec-backend
+            - name: LIVEKIT_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_SECRET
+                  name: sec-backend
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/livekit-template
+            - name: workdir
+              mountPath: /etc/livekit
       containers:
         - name: livekit-server
           securityContext:
@@ -35,6 +60,16 @@ spec:
               value: /etc/lkcert/tls.crt
             - name: LIVEKIT_TURN_KEY
               value: /etc/lkcert/tls.key
+            - name: LIVEKIT_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_KEY
+                  name: sec-backend
+            - name: LIVEKIT_API_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: LIVEKIT_API_SECRET
+                  name: sec-backend
           ports:
             - name: http
               containerPort: 7880
