@@ -17,41 +17,20 @@ spec:
       labels:
         app: livekit-server
     spec:
-      dnsPolicy: ClusterFirstWithHostNet
-      hostNetwork: true
       terminationGracePeriodSeconds: 18000
-      initContainers:
-        - name: init-config
-          image: dibi/envsubst:1
-          command:
-            [
-              "sh",
-              "-c",
-              "envsubst < /etc/livekit-template/config.yaml > /etc/livekit/config.yaml",
-            ]
-          env:
-            - name: LIVEKIT_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: LIVEKIT_API_KEY
-                  name: sec-backend
-            - name: LIVEKIT_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  key: LIVEKIT_API_SECRET
-                  name: sec-backend
-          volumeMounts:
-            - name: config-volume
-              mountPath: /etc/livekit-template
-            - name: workdir
-              mountPath: /etc/livekit
       containers:
         - name: livekit-server
-          securityContext: {}
-          image: livekit/livekit-server:v1.8.0
+          securityContext:
+            {}
+          image: "livekit/livekit-server:v1.8.3"
           imagePullPolicy: IfNotPresent
-          args: [--disable-strict-config, --config, /etc/livekit/config.yaml]
+          args: ["--disable-strict-config"]
           env:
+            - name: LIVEKIT_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: livekit-livekit-server
+                  key: config.yaml
             - name: LIVEKIT_API_KEY
               valueFrom:
                 secretKeyRef:

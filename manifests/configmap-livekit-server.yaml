@@ -4,12 +4,10 @@ metadata:
   name: livekit-livekit-server
 data:
   config.yaml: |
-    keys:
-      ${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}
     log_level: debug
     port: 7880
     redis:
-      address: meet-svc-redis.tn-openbsw-meet.svc.cluster.local:6379
+      address: meet-svc-redis:6379
     rtc:
       port_range_end: 60000
       port_range_start: 50000
