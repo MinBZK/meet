@@ -31,16 +31,6 @@ spec:
                 configMapKeyRef:
                   name: livekit-livekit-server
                   key: config.yaml
-            - name: LIVEKIT_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  key: LIVEKIT_API_KEY
-                  name: sec-backend
-            - name: LIVEKIT_API_SECRET
-              valueFrom:
-                secretKeyRef:
-                  key: LIVEKIT_API_SECRET
-                  name: sec-backend
             - name: LIVEKIT_TURN_CERT
               value: /etc/lkcert/tls.crt
             - name: LIVEKIT_TURN_KEY
