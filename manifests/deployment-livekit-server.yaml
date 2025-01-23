@@ -45,11 +45,11 @@ spec:
               mountPath: /etc/livekit
       containers:
         - name: livekit-server
-          securityContext:
-            {}
+          securityContext: {}
           image: "livekit/livekit-server:v1.8.3"
           imagePullPolicy: IfNotPresent
-          args: ["--disable-strict-config", "--config", "/etc/livekit/config.yaml"]
+          args:
+            ["--disable-strict-config", "--config", "/etc/livekit/config.yaml"]
           env:
             - name: LIVEKIT_CONFIG
               valueFrom:
