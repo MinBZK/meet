@@ -102,10 +102,10 @@ spec:
                 secretKeyRef:
                   key: LIVEKIT_API_SECRET
                   name: sec-backend
-            # - name: LIVEKIT_API_URL
-            #   value: https://meet-6b0kiy8h.livekit.cloud
             - name: LIVEKIT_API_URL
-              value: https://livekit.meet.la-suite.apps.digilab.network
+              value: https://meet-6b0kiy8h.livekit.cloud
+            # - name: LIVEKIT_API_URL
+            #   value: https://livekit.meet.la-suite.apps.digilab.network
             - name: LOGIN_REDIRECT_URL
               value: https://meet.la-suite.apps.digilab.network
             - name: LOGIN_REDIRECT_URL_FAILURE
