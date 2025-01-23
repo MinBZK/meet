@@ -156,7 +156,7 @@ spec:
             - name: "DJANGO_CONFIGURATION"
               value: "Production"
             - name: "RESOURCE_DEFAULT_IS_PUBLIC"
-              value: "true"
+              value: "false"
             - name: SUMMARY_SERVICE_API_TOKEN
               valueFrom:
                 secretKeyRef:
