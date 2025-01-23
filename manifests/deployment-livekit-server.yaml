@@ -76,15 +76,15 @@ spec:
               protocol: TCP
             - name: rtc-tcp
               containerPort: 7881
-              hostPort: 7881
+              protocol: TCP
+            - name: turn
+              containerPort: 3478
               protocol: TCP
             - name: turn-tls
-              containerPort: 3478
-              hostPort: 3478
+              containerPort: 5349
               protocol: TCP
             - name: turn-udp
               containerPort: 3478
-              hostPort: 3478
               protocol: UDP
           livenessProbe:
             httpGet:

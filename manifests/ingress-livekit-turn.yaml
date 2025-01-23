@@ -15,7 +15,7 @@ spec:
               service:
                 name: svc-livekit-turn
                 port:
-                  number: 5349
+                  number: 3478
   tls:
     - hosts:
         - turn.meet.la-suite.apps.digilab.network

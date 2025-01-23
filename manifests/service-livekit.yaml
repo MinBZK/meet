@@ -8,6 +8,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 3478
+      targetPort: turn
+      protocol: TCP
+      name: turn
     - port: 5349
       targetPort: turn-tls
       protocol: TCP

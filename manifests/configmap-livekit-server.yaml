@@ -18,11 +18,9 @@ data:
     turn:
       enabled: true
       domain: turn.meet.la-suite.apps.digilab.network
-      tls_port: 5349
-      udp_port: 3478
-      external_tls: true
-      secretName: livekit-turn-cert
-      serviceType: LoadBalancer
+      tls_port: 443
+      udp_port: 443
+      external_tls: false
 kind: ConfigMap
 metadata:
   name: livekit-livekit-server
