@@ -1,0 +1,22 @@
+kind: Ingress
+metadata:
+  name: ing-livekit-turn
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+apiVersion: networking.k8s.io/v1
+spec:
+  rules:
+    - host: turn.meet.la-suite.apps.digilab.network
+      http:
+        paths:
+          - pathType: Prefix
+            path: /
+            backend:
+              service:
+                name: svc-livekit-turn
+                port:
+                  number: 5349
+  tls:
+    - hosts:
+        - turn.meet.la-suite.apps.digilab.network
+      secretName: livekit-turn-cert

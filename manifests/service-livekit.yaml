@@ -8,6 +8,10 @@ spec:
       targetPort: http
       protocol: TCP
       name: http
+    - port: 5349
+      targetPort: turn-tls
+      protocol: TCP
+      name: turn-tls
   selector:
     app: livekit-server
   type: ClusterIP
