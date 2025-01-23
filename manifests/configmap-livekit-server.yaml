@@ -1,26 +1,26 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-    name: livekit-livekit-server
+  name: livekit-livekit-server
 data:
-    config.yaml: ENC[AES256_GCM,data:90cvmJVJew7tu1eFSm5FogTq1zXwhxChzdG6ZJlp35yixrP+POri7MisVRzWoKeWXr1LYUP3Y4Sf1WbS0ByyfZwbswgZMdot1MN3kB0TZ8JRByrM78o89Nzjv5aeeePTDzOVu748T5VZJnG4LkrUyjpmJxXwfVqXUHeJtskD82S0Kpnhr0W2uQmGrn90sZMwUHsQmL2JJUkRL7+88O7q7RcBI2THQ0K4ArVXGP3brXPzhOZz5GVWTVFY0b2qH0GUA8HBc7sIyUXKzjkHVuhONvtKHmGQUeOketmyPQf4bg7SAVBnT30mZ2o+LDRQpvejXa8mzfkFoD6fH3ZcnW78xjsspQ3QJcyeZVws3OtGgM+dIhWJON0rEEH3C25wD/vZB8sR8wqkG8/jiCSRD7FFqDkNcx7Sb37w4ND09PFkqpOTsgtCUqEwlbLjZnouVjTEOpJhaEi+UuJHun+PQAvymcKqYoaKoSKojahGMk3x29guAOiQc/B7s/onQ+M7ifZmLxO41lhpowDiaSnJ/1l6k8O6KSXx6r3T0e5vooQ8shXm9dhI9X3qJ8dOG1w0LuS0fOP6PWZoj/BruBRHAQvnBuM2/uQ=,iv:edjZnkywDY/6SRvJE2EIaHidH2QRJ3iPwffEBY7w9zw=,tag:viHQfnuQB3yFWmwr9QtATw==,type:str]
+  config.yaml: ENC[AES256_GCM,data:90cvmJVJew7tu1eFSm5FogTq1zXwhxChzdG6ZJlp35yixrP+POri7MisVRzWoKeWXr1LYUP3Y4Sf1WbS0ByyfZwbswgZMdot1MN3kB0TZ8JRByrM78o89Nzjv5aeeePTDzOVu748T5VZJnG4LkrUyjpmJxXwfVqXUHeJtskD82S0Kpnhr0W2uQmGrn90sZMwUHsQmL2JJUkRL7+88O7q7RcBI2THQ0K4ArVXGP3brXPzhOZz5GVWTVFY0b2qH0GUA8HBc7sIyUXKzjkHVuhONvtKHmGQUeOketmyPQf4bg7SAVBnT30mZ2o+LDRQpvejXa8mzfkFoD6fH3ZcnW78xjsspQ3QJcyeZVws3OtGgM+dIhWJON0rEEH3C25wD/vZB8sR8wqkG8/jiCSRD7FFqDkNcx7Sb37w4ND09PFkqpOTsgtCUqEwlbLjZnouVjTEOpJhaEi+UuJHun+PQAvymcKqYoaKoSKojahGMk3x29guAOiQc/B7s/onQ+M7ifZmLxO41lhpowDiaSnJ/1l6k8O6KSXx6r3T0e5vooQ8shXm9dhI9X3qJ8dOG1w0LuS0fOP6PWZoj/BruBRHAQvnBuM2/uQ=,iv:edjZnkywDY/6SRvJE2EIaHidH2QRJ3iPwffEBY7w9zw=,tag:viHQfnuQB3yFWmwr9QtATw==,type:str]
 sops:
-    kms: []
-    gcp_kms: []
-    azure_kv: []
-    hc_vault: []
-    age:
-        - recipient: age18ut09wsuwf4pusrhywlu9nu3nzvz040m26h4yghhhtvqm88an3zssvsz9m
-          enc: |
-            -----BEGIN AGE ENCRYPTED FILE-----
-            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5RTFkNEwyTzVUNTdNYjNP
-            TE9BQlBVQStDZHZKaUVlWEFrQXYvYWJJZmc4CmkyeVNyOUNaTk1zRnMxQUIvOUlz
-            dDlDQWxPVksvbmNoTjVkUUJEZmVYRG8KLS0tIHh3cnZJeXFRSllCSDVZSThtV3dY
-            Y05xY0QrU2szdXF1bW1jcHRaSFhxWmMKdTBHM6tpSNW78xxK0H4SSZni993yiST9
-            rzkCRo/6bGlwnpDaev/mlJla0vqKZnfRkkLLPac83XI0I6l6I71/YA==
-            -----END AGE ENCRYPTED FILE-----
-    lastmodified: "2025-01-22T19:07:32Z"
-    mac: ENC[AES256_GCM,data:VZ+larj4COTKcaMnvPpi9vUsISR5BxuvKP2XAfxRhlBOghkRIQq7Rr6CUkHibPuJPY7LbFAiD+49JTvc65Y2IiEBQKoObforlT/BR4ZWhE2qrTRw/gbza1LSG5alQF38bMEBWjTC/SsUAYCA2h3E68qP0M5aPrKppUkgewnCtXE=,iv:qw0ag2BLtQxQ0dA8iA5E2115waqZwzhmkyrBXEYZ5Yo=,tag:kctiaaI1SuyI2c77HIM8Gg==,type:str]
-    pgp: []
-    encrypted_regex: ^(data|stringData)$
-    version: 3.8.1
+  kms: []
+  gcp_kms: []
+  azure_kv: []
+  hc_vault: []
+  age:
+    - recipient: age18ut09wsuwf4pusrhywlu9nu3nzvz040m26h4yghhhtvqm88an3zssvsz9m
+      enc: |
+        -----BEGIN AGE ENCRYPTED FILE-----
+        YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSB5RTFkNEwyTzVUNTdNYjNP
+        TE9BQlBVQStDZHZKaUVlWEFrQXYvYWJJZmc4CmkyeVNyOUNaTk1zRnMxQUIvOUlz
+        dDlDQWxPVksvbmNoTjVkUUJEZmVYRG8KLS0tIHh3cnZJeXFRSllCSDVZSThtV3dY
+        Y05xY0QrU2szdXF1bW1jcHRaSFhxWmMKdTBHM6tpSNW78xxK0H4SSZni993yiST9
+        rzkCRo/6bGlwnpDaev/mlJla0vqKZnfRkkLLPac83XI0I6l6I71/YA==
+        -----END AGE ENCRYPTED FILE-----
+  lastmodified: "2025-01-22T19:07:32Z"
+  mac: ENC[AES256_GCM,data:VZ+larj4COTKcaMnvPpi9vUsISR5BxuvKP2XAfxRhlBOghkRIQq7Rr6CUkHibPuJPY7LbFAiD+49JTvc65Y2IiEBQKoObforlT/BR4ZWhE2qrTRw/gbza1LSG5alQF38bMEBWjTC/SsUAYCA2h3E68qP0M5aPrKppUkgewnCtXE=,iv:qw0ag2BLtQxQ0dA8iA5E2115waqZwzhmkyrBXEYZ5Yo=,tag:kctiaaI1SuyI2c77HIM8Gg==,type:str]
+  pgp: []
+  encrypted_regex: ^(data|stringData)$
+  version: 3.8.1
