@@ -156,7 +156,7 @@ spec:
             - name: "DJANGO_CONFIGURATION"
               value: "Production"
             - name: "RESOURCE_DEFAULT_IS_PUBLIC"
-              value: "false"
+              value: "true"
             - name: SUMMARY_SERVICE_API_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -167,7 +167,7 @@ spec:
             - name: DJANGO_SETTINGS_MODULE
               value: meet.settings
             - name: FRONTEND_SUPPORT
-              value: "{'id': '58ea6697-8eba-4492-bc59-ad6562585041'}"
+              value: "{'id': ''}"
             - name: STORAGES_STATICFILES_BACKEND
               value: django.contrib.staticfiles.storage.StaticFilesStorage
             - name: RECORDING_WORKER_CLASSES
