@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   config.yaml: |
     keys:
-      $(LIVEKIT_API_KEY): $(LIVEKIT_API_SECRET)
+      ${LIVEKIT_API_KEY}: ${LIVEKIT_API_SECRET}
     log_level: debug
     logging:
       level: debug
