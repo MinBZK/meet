@@ -167,7 +167,7 @@ spec:
             - name: DJANGO_SETTINGS_MODULE
               value: meet.settings
             - name: FRONTEND_SUPPORT
-              value: "{'id': ''}"
+              value: "{'id': '123'}"
             - name: STORAGES_STATICFILES_BACKEND
               value: django.contrib.staticfiles.storage.StaticFilesStorage
             - name: RECORDING_WORKER_CLASSES
