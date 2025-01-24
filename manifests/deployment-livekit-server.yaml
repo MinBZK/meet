@@ -78,13 +78,13 @@ spec:
               containerPort: 7881
               protocol: TCP
             - name: turn
-              containerPort: 3478
+              containerPort: 443
               protocol: TCP
             - name: turn-tls
               containerPort: 5349
               protocol: TCP
             - name: turn-udp
-              containerPort: 3478
+              containerPort: 443
               protocol: UDP
           livenessProbe:
             httpGet:
