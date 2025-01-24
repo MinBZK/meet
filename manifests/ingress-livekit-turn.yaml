@@ -13,7 +13,7 @@ spec:
             path: /
             backend:
               service:
-                name: svc-livekit-turn
+                name: svc-livekit
                 port:
                   number: 3478
   tls:
