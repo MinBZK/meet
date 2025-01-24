@@ -20,7 +20,7 @@ spec:
             path: /
             backend:
               service:
-                name: svc-livekit
+                name: svc-livekit-server
                 port:
                   number: 80
   tls:
