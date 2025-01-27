@@ -23,9 +23,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - name: turn-udp
-    protocol: UDP
-    port: 3478
-    targetPort: 3478
+    - name: turn-udp
+      protocol: UDP
+      port: 3478
+      targetPort: 3478
   selector:
     app: livekit-server
