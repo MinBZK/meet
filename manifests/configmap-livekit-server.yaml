@@ -13,7 +13,6 @@ data:
       port_range_end: 60000
       port_range_start: 50000
       tcp_port: 7881
-      use_external_ip: true
     turn:
       enabled: true
       domain: turn.meet.la-suite.apps.digilab.network
