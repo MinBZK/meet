@@ -7,19 +7,16 @@ namePrefix: meet-
 buildMetadata: [originAnnotations]
 
 resources:
-  - manifests/configmap-livekit-server.yaml
   - manifests/configmap-redis.yaml
   - manifests/deployment-backend.yaml
   - manifests/deployment-celery.yaml
   - manifests/deployment-frontend.yaml
-  - manifests/deployment-livekit-server.yaml
   - manifests/deployment-mailcatcher.yaml
   - manifests/deployment-minio.yaml
   - manifests/deployment-redis.yaml
   - manifests/deployment-summary.yaml
   - manifests/ingress-admin.yaml
   - manifests/ingress-backend.yaml
-  - manifests/ingress-livekit.yaml
   - manifests/postgresql-cluster.yaml
   - manifests/pvc-minio.yaml
   - manifests/secret-backend.yaml
@@ -30,8 +27,6 @@ resources:
   - manifests/service-backend.yaml
   - manifests/service-mailcatcher.yaml
   - manifests/service-frontend.yaml
-  - manifests/service-livekit.yaml
-  - manifests/service-livekit-turn.yaml
   - manifests/service-minio.yaml
   - manifests/service-redis.yaml
   - manifests/service-summary.yaml
