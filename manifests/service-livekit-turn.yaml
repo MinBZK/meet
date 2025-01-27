@@ -5,14 +5,14 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-    - name: stun-turn-tcp
+    - name: turn-tls-5349
+      protocol: TCP
+      port: 5349
+      targetPort: turn-tls
+    - name: turn-tls-443
       protocol: TCP
       port: 443
-      targetPort: 443
-    - name: media-tcp
-      protocol: TCP
-      port: 7881
-      targetPort: 7881
+      targetPort: turn-tls
   selector:
     app: livekit-server
 ---
@@ -23,13 +23,9 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - name: stun-turn-udp
+  - name: turn-udp
+    protocol: UDP
     port: 3478
-    protocol: UDP
     targetPort: 3478
-  - name: media-udp
-    port: 7882
-    protocol: UDP
-    targetPort: 7882
   selector:
     app: livekit-server
