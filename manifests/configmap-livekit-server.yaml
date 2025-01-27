@@ -15,10 +15,8 @@ data:
       use_external_ip: false
     turn:
       enabled: true
-      domain: 57.153.140.146
-      tls_port: 443
+      domain: turn.meet.la-suite.apps.digilab.network
       udp_port: 3478
-      external_tls: false
 kind: ConfigMap
 metadata:
   name: livekit-livekit-server
