@@ -23,13 +23,13 @@ metadata:
 spec:
   type: LoadBalancer
   ports:
-  - name: stun-turn-udp
-    port: 3478
-    protocol: UDP
-    targetPort: 3478
-  - name: media-udp
-    port: 7882
-    protocol: UDP
-    targetPort: 7882
+    - name: stun-turn-udp
+      port: 3478
+      protocol: UDP
+      targetPort: 3478
+    - name: media-udp
+      port: 7882
+      protocol: UDP
+      targetPort: 7882
   selector:
     app: livekit-server
