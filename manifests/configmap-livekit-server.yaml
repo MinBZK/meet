@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+    name: livekit-livekit-server
+data:
+    config.yaml: ENC[AES256_GCM,data:LL3ruEVj5zkCNjA3jwtsIdcMqtEeF0Kv7PzVOWFvCax0oBEC6kPLOwkIjK/SRXg5lHCkb5aeE2ZZ014o1HdlXw0H7iluNRikDkmltj5NXz/bX9s7MSCEIr1LgHncGj736zxQtWLGelXtm56nphzVepK4pUTuDC/kuetaemhXqPh/CIiSYqoic9vK0eDj8LQ0Uo2k+HACfZ0UiaoFCAfGnLxrsOqf9Jog+0dVXGtRpX7hl98eoVCasPfb2ndqxxQiTYq/c8uJlQqnVYj49jkHMA8RTZg/gta7ECBc70DB5mXAdetrZWThrg326zVA4adK4tW4+Xske9Ff6/H5Fn+qG0UAORCqhsMLdUUniHmdCnuxVjtp+BGmDhwyJlepQ855j4r6u+m9pvPuhGw04s0RpG/jZkTuySk4tpcFHb8hsOQ+xxX9o36fJFFXLBcUzWcD0ix3Qvci7Tcnz1U6VlmuplTO7nXWFgfWayHNQWCU8bPsR9oYJ7fUHYYGfZ2WT2XXNtTYVon+BMm5jz5LIXI/sKVcIg8TLJJd8W2WTMFOtEUrr778KvQT,iv:/owoP2k1xHxaV4C3ogBg5yB6kz7sTXaWG25mW8l6rS8=,tag:JXa9X8lxBItnMGHtQiv26g==,type:str]
+sops:
+    kms: []
+    gcp_kms: []
+    azure_kv: []
+    hc_vault: []
+    age:
+        - recipient: age18ut09wsuwf4pusrhywlu9nu3nzvz040m26h4yghhhtvqm88an3zssvsz9m
+          enc: |
+            -----BEGIN AGE ENCRYPTED FILE-----
+            YWdlLWVuY3J5cHRpb24ub3JnL3YxCi0+IFgyNTUxOSBSb2loQVVxalN3TDZ0eVpx
+            TlREWGszTmpIYjhlSzVxelBBWk5PaE5GRlM4Cm9QK0doZC9FUklEMk9zTkhac0lH
+            TEdVSjBlQ1V3NDV0alZhZUVhNm9vR1EKLS0tIDJnTWxtWGpnY25ZK0VjWlNERWZl
+            MWJhbHJ1cFkrZEJUL3BsYVNDZi9qeEkKSq9n6dwKxxhnKOcz92FgwKEZwKOmQVbC
+            PzcmfHv7ZFxH5PBDZQoo3MxTZ3IMoLq81Cs30FxuZiZOPfn58/nq2g==
+            -----END AGE ENCRYPTED FILE-----
+    lastmodified: "2025-01-28T10:57:35Z"
+    mac: ENC[AES256_GCM,data:sznBGa777b0cmWOFayI8RsJWm425PCy9MxOEQLVnAE098siIl5qxBcndSU9CgtLZaKm8MTHxJMKik+aX8PggbXHoI2RTIoMA7wXDoDdcUxPTSNtme7Bt1cPKayFrjgGFigr3NljgqJK5Q03DA14PORFIzo0xvtNWKtQ2ZVgwh1A=,iv:wrWy+v7tWfsayPqR3slLMB57LLlpVnaDGj4OJCFQ3nk=,tag:5SUj90drP05khBRhiFsHRw==,type:str]
+    pgp: []
+    encrypted_regex: ^data|stringData$
+    version: 3.8.1

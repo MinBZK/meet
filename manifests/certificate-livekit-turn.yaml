@@ -1,0 +1,14 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: livekit-turn-cert
+spec:
+  dnsNames:
+  - turn.meet.la-suite.apps.digilab.network
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod
+  secretName: livekit-turn-cert
+  usages:
+  - digital signature
+  - key encipherment

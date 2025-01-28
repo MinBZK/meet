@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: livekit-livekit-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: meet-livekit-server
+  template:
+    metadata:
+      labels:
+        app: meet-livekit-server
+    spec:
+      dnsPolicy: ClusterFirstWithHostNet
+      hostNetwork: true
+      containers:
+        - name: livekit-server
+          image: "livekit/livekit-server:v1.8.3"
+          args: ["--disable-strict-config"]
+          env:
+            - name: LIVEKIT_CONFIG
+              valueFrom:
+                configMapKeyRef:
+                  name: livekit-livekit-server
+                  key: config.yaml
+            - name: LIVEKIT_TURN_CERT
+              value: /etc/lkcert/tls.crt
+            - name: LIVEKIT_TURN_KEY
+              value: /etc/lkcert/tls.key
+          ports:
+            - name: http
+              containerPort: 7880
+              protocol: TCP
+            - name: rtc-tcp
+              containerPort: 7881
+              hostPort: 7881
+              protocol: TCP
+            - name: turn-tls
+              containerPort: 3478
+              hostPort: 3478
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          volumeMounts:
+            - name: lkturncert
+              mountPath: /etc/lkcert
+              readOnly: true
+        - name: redis
+          image: redis:7.2-alpine
+          ports:
+          - containerPort: 6379
+          livenessProbe:
+            tcpSocket:
+              port: 6379
+            initialDelaySeconds: 10
+            periodSeconds: 10
+          readinessProbe:
+            exec:
+              command:
+              - redis-cli
+              - ping
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: lkturncert
+          secret:
+            secretName: livekit-turn-cert
