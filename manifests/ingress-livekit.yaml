@@ -1,0 +1,28 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: livekit-livekit-ingress
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      proxy_set_header Upgrade "websocket";
+      proxy_set_header Connection "Upgrade";
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "3600"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "3600"
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: livekit.meet.la-suite.apps.digilab.network
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: livekit-livekit-server
+                port:
+                  name: http
+  tls:
+    - hosts:
+        - livekit.meet.la-suite.apps.digilab.network
+      secretName: livekit-cert
