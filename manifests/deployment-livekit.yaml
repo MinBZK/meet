@@ -55,7 +55,7 @@ spec:
         - name: redis
           image: redis:7.2-alpine
           ports:
-          - containerPort: 6379
+            - containerPort: 6379
           livenessProbe:
             tcpSocket:
               port: 6379
@@ -64,8 +64,8 @@ spec:
           readinessProbe:
             exec:
               command:
-              - redis-cli
-              - ping
+                - redis-cli
+                - ping
             initialDelaySeconds: 5
             periodSeconds: 5
       volumes:
