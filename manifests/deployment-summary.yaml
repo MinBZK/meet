@@ -17,7 +17,7 @@ spec:
       shareProcessNamespace: false
       containers:
         - name: meet
-          image: lasuite/meet-summary:v0.1.12
+          image: lasuite/meet-summary:v0.1.14
           imagePullPolicy: Always
           env:
             - name: APP_API_TOKEN
