@@ -18,7 +18,7 @@ spec:
       shareProcessNamespace: false
       containers:
         - name: meet
-          image: lasuite/meet-frontend:v0.1.14
+          image: lasuite/meet-frontend:v0.1.15
           imagePullPolicy: Always
           env:
           ports:
