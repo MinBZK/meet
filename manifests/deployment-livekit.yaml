@@ -28,6 +28,10 @@ spec:
               value: /etc/lkcert/tls.crt
             - name: LIVEKIT_TURN_KEY
               value: /etc/lkcert/tls.key
+          resources:
+            requests:
+              cpu: 1500m
+              memory: 256Mi
           ports:
             - name: http
               containerPort: 7880

@@ -28,6 +28,10 @@ spec:
             - worker
             - --pool=solo
             - --loglevel=info
+          resources:
+            requests:
+              cpu: 10m
+              memory: 128Mi
           env:
             - name: APP_API_TOKEN
               valueFrom:
