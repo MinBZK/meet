@@ -172,6 +172,8 @@ spec:
               value: django.contrib.staticfiles.storage.StaticFilesStorage
             - name: RECORDING_WORKER_CLASSES
               value: "{'transcript': 'core.recording.worker.services.AudioCompositeEgressService'}"
+            - name: RESOURCE_DEFAULT_ACCESS_LEVEL
+              value: restricted
           resources:
             requests:
               cpu: 60m
