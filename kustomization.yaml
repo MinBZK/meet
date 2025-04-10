@@ -36,3 +36,5 @@ resources:
   - manifests/service-minio.yaml
   - manifests/service-redis.yaml
   - manifests/service-summary.yaml
+  - manifests/deployment-livekit-egress.yaml
+  - manifests/configmap-livekit-egress.yaml
